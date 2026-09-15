@@ -98,15 +98,43 @@
       .table-head { display: none; }
       .row {
         grid-template-columns: 1fr;
-        gap: 8px;
+        gap: 10px;
         padding: 18px 18px 14px;
       }
+      .row > span {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        word-break: break-word;
+      }
+      .row > span:first-child {
+        padding-bottom: 8px;
+        border-bottom: 1px solid rgba(121, 145, 211, .12);
+      }
       .row > span:first-child::before {
-        content: "Student No: ";
+        content: "Student No";
         color: var(--cyan);
         font: 10px monospace;
         letter-spacing: .12em;
         text-transform: uppercase;
+      }
+      .row > span:nth-child(2)::before {
+        content: "Student Name";
+        color: var(--cyan);
+        font: 10px monospace;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+      }
+      .row > span:nth-child(3)::before {
+        content: "Student ID";
+        color: var(--cyan);
+        font: 10px monospace;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+      }
+      .student-name, .student-id {
+        text-align: right;
       }
     }
   </style>
