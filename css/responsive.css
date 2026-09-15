@@ -1,0 +1,27 @@
+@media (max-width: 900px) {
+  :root { --nav-height: 70px; }
+  .shell { width: min(100% - 36px, var(--shell)); }
+  .nav { min-height: var(--nav-height); }
+  .menu-toggle { display: block; }
+  .nav-links { display: none; position: absolute; top: var(--nav-height); left: 18px; right: 18px; padding: 8px; flex-direction: column; align-items: stretch; border: 1px solid var(--line); border-top: 0; background: rgba(7, 9, 20, .98); box-shadow: 0 20px 35px rgba(0, 0, 0, .35); }
+  .nav-links.open { display: flex; }
+  .nav-links a { min-height: 48px; padding: 13px 14px; border-bottom: 1px solid rgba(121, 145, 211, .14); }
+  .nav-links a:last-child { border-bottom: 0; }
+  .hero { min-height: 620px; }
+  .hero-content { padding-block: 90px; }
+  .hub-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .profile-layout { grid-template-columns: 1fr; gap: 40px; }
+  .about-layout { grid-template-columns: 130px minmax(0, 1fr); gap: 28px; }
+  .class-badge { width: 130px; height: 130px; }
+}
+@media (max-width: 620px) {
+  html { scroll-padding-top: calc(var(--nav-height) + 10px); }
+  .shell { width: calc(100% - 28px); }
+  .brand { gap: 8px; }.brand-mark { width: 31px; height: 31px; }.brand strong { font-size: 12px; }.brand small { font-size: 8px; }
+  .hero { min-height: 620px; }.hero-content { padding-block: 70px; }.hero h1 { font-size: clamp(58px, 18vw, 88px); }.hero-program { font-size: 18px; line-height: 1.35; }.hero-copy { font-size: 14px; }.hero-foot { flex-wrap: wrap; margin-top: 50px; }
+  .section { padding-block: 68px; }.section-heading { display: block; margin-bottom: 30px; }.section-heading>p { margin-top: 18px; }.profile-intro h2, .section-heading h2, .about-layout h2 { font-size: clamp(38px, 12vw, 58px); }
+  .hub-grid { grid-template-columns: 1fr; }.feature-card { min-height: 215px; padding: 23px; }.card-icon { margin-bottom: 24px; }
+  .result-data { grid-template-columns: 1fr; gap: 20px; }.profile-panel { padding: 23px 19px; }
+  .about-layout { grid-template-columns: 1fr; }.class-badge { width: 112px; height: 112px; }.class-badge strong { font-size: 38px; }.about-facts { grid-template-columns: 1fr; gap: 16px; }
+  .pdf-frame { height: 62vh; min-height: 320px; }.footer-layout, .footer-bottom { display: block; }.footer-nav { justify-content: start; margin-top: 30px; }.footer-bottom span { display: block; margin-top: 8px; }.welcome-strip { right: 14px; bottom: 14px; left: 14px; text-align: center; font-size: 12px; }
+}
