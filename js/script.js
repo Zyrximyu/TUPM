@@ -89,34 +89,12 @@ function closeScheduleDialog() {
 }
 
 function launchScheduleApp() {
-  const isAndroid = /Android/i.test(navigator.userAgent);
-  if (!isAndroid) {
-    window.open(LINKS.schedule, '_blank', 'noopener,noreferrer');
-    return;
-  }
-
-  const appIntent = `intent://#Intent;package=${SCHEDULE_APP_PACKAGE};scheme=mysched;end`;
-  window.location.assign(appIntent);
   closeScheduleDialog();
-  window.setTimeout(() => {
-    if (document.hasFocus()) {
-      window.open(LINKS.schedule, '_blank', 'noopener,noreferrer');
-    }
-  }, 1200);
 }
 
 document.querySelectorAll('[data-link]').forEach((link) => link.addEventListener('click', (event) => openConfiguredLink(link.dataset.link, event)));
 document.getElementById('closeScheduleDialog').addEventListener('click', closeScheduleDialog);
 scheduleDialog.addEventListener('click', (event) => { if (event.target === scheduleDialog) closeScheduleDialog(); });
-document.getElementById('openScheduleApp').addEventListener('click', launchScheduleApp);
-document.getElementById('openScheduleWeb').addEventListener('click', () => {
-  closeScheduleDialog();
-  if (!LINKS.schedule || LINKS.schedule.startsWith('YOUR_')) {
-    window.alert('The web schedule link has not been configured yet.');
-    return;
-  }
-  window.open(LINKS.schedule, '_blank', 'noopener,noreferrer');
-});
 document.getElementById('menuToggle').addEventListener('click', () => {
   const nav = document.getElementById('navLinks');
   const isOpen = nav.classList.toggle('open');
