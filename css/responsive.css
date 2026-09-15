@@ -23,5 +23,30 @@
   .hub-grid { grid-template-columns: 1fr; }.feature-card { min-height: 215px; padding: 23px; }.card-icon { margin-bottom: 24px; }
   .result-data { grid-template-columns: 1fr; gap: 20px; }.profile-panel { padding: 23px 19px; }
   .about-layout { grid-template-columns: 1fr; }.class-badge { width: 112px; height: 112px; }.class-badge strong { font-size: 38px; }.about-facts { grid-template-columns: 1fr; gap: 16px; }
+  .class-list-header { display: none; }
+  .class-list-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 18px 18px 14px;
+  }
+  .student-meta strong { font-size: 14px; line-height: 1.35; }
+  .class-list-row > span {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(121, 145, 211, .12);
+    font-size: 12px;
+  }
+  .class-list-row > span:nth-child(2)::before,
+  .class-list-row > span:nth-child(3)::before {
+    color: var(--cyan);
+    font: 10px monospace;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  .class-list-row > span:nth-child(2)::before { content: "Course"; }
+  .class-list-row > span:nth-child(3)::before { content: "Section"; }
   .pdf-frame { height: 62vh; min-height: 320px; }.footer-layout, .footer-bottom { display: block; }.footer-nav { justify-content: start; margin-top: 30px; }.footer-bottom span { display: block; margin-top: 8px; }.welcome-strip { right: 14px; bottom: 14px; left: 14px; text-align: center; font-size: 12px; }
 }
