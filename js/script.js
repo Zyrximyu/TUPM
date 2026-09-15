@@ -1,11 +1,14 @@
 const API_URL = 'https://script.google.com/macros/s/AKfycbwaBZdPJZuhL9KelbPiNPs6S-3CLpiDs63YQesXWvdUU-qLRc4YxojxxTMBj3Yqc80B/exec';
 const LINKS = {
-  schedule: 'YOUR_SCHEDULE_URL',
+  schedule: 'https://play.google.com/store/apps/details?id=com.ici.mysched',
   notion: 'https://app.notion.com/p/BSEE-1B-Lounge-124d2c5d826580c396b1e403ff4aa56b',
   facebook: 'https://www.facebook.com/profile.php?id=61592519789686'
 };
 const SCHEDULE_APP_PACKAGE = 'com.ici.mysched';
+const SCHEDULE_ROOM_CODE = 'NFKN';
 const scheduleDialog = document.getElementById('scheduleDialog');
+const scheduleRoomCodeEl = document.getElementById('scheduleRoomCode');
+const scheduleDownloadLink = document.getElementById('scheduleDownloadLink');
 const accessGate = document.getElementById('accessGate');
 const accessForm = document.getElementById('accessForm');
 const accessStudentId = document.getElementById('accessStudentId');
@@ -59,7 +62,7 @@ accessForm.addEventListener('submit', async (event) => {
 function openConfiguredLink(key, event) {
   event.preventDefault();
   if (key === 'schedule') {
-    launchScheduleApp();
+    openScheduleDialog();
     return;
   }
   if (!LINKS[key] || LINKS[key].startsWith('YOUR_')) {
@@ -69,6 +72,18 @@ function openConfiguredLink(key, event) {
   window.open(LINKS[key], '_blank', 'noopener,noreferrer');
 }
 
+function openScheduleDialog() {
+  if (scheduleRoomCodeEl) {
+    scheduleRoomCodeEl.textContent = SCHEDULE_ROOM_CODE;
+  }
+  if (scheduleDownloadLink) {
+    scheduleDownloadLink.href = LINKS.schedule;
+    scheduleDownloadLink.setAttribute('target', '_blank');
+    scheduleDownloadLink.setAttribute('rel', 'noopener noreferrer');
+  }
+  scheduleDialog.classList.remove('hidden');
+}
+
 function closeScheduleDialog() {
   scheduleDialog.classList.add('hidden');
 }
@@ -76,12 +91,18 @@ function closeScheduleDialog() {
 function launchScheduleApp() {
   const isAndroid = /Android/i.test(navigator.userAgent);
   if (!isAndroid) {
-    window.alert('Open this page on an Android phone to launch the Schedule app.');
+    window.open(LINKS.schedule, '_blank', 'noopener,noreferrer');
     return;
   }
-  const appIntent = `intent://#Intent;package=${SCHEDULE_APP_PACKAGE};action=android.intent.action.MAIN;category=android.intent.category.LAUNCHER;end`;
+
+  const appIntent = `intent://#Intent;package=${SCHEDULE_APP_PACKAGE};scheme=mysched;end`;
   window.location.assign(appIntent);
   closeScheduleDialog();
+  window.setTimeout(() => {
+    if (document.hasFocus()) {
+      window.open(LINKS.schedule, '_blank', 'noopener,noreferrer');
+    }
+  }, 1200);
 }
 
 document.querySelectorAll('[data-link]').forEach((link) => link.addEventListener('click', (event) => openConfiguredLink(link.dataset.link, event)));
